@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         //フレーム買う
         Application.targetFrameRate = 60;
 
@@ -29,13 +31,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //ジャンプ
         Jump();
-
+        //移動
         InputArrow();
 
-    }
 
+    }
     void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -75,6 +77,16 @@ public class PlayerController : MonoBehaviour
         }
 
         this.animation.speed = speed / 0.75f;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Goal")
+        {
+            Debug.Log("Goal");
+            SceneManager.LoadScene("GameClear");
+        }
     }
 
 }
