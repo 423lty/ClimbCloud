@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
     }
     public void GameStart()
     {
+        
         SceneManager.LoadScene("GameScreen");
     }
 
